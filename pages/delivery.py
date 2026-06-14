@@ -41,3 +41,36 @@ VALUES(?,?,?,?,?)
  company,
  "Received",
  f"qrcodes/{tracking_id}.png"))
+ import smtplib
+
+def send_email(email, tracking_id):
+
+    message = f"""
+    Your package has arrived.
+
+    Tracking ID:
+    {tracking_id}
+
+    Collect it from Campus Courier Center.
+    """
+
+    server = smtplib.SMTP(
+        "smtp.gmail.com",
+        587
+    )
+
+    server.starttls()
+
+    server.login(
+        "yourmail@gmail.com",
+        "app_password"
+    )
+
+    server.sendmail(
+        "yourmail@gmail.com",
+        email,
+        message
+    )
+
+    server.quit()
+    send_email(student_email, tracking_id)
