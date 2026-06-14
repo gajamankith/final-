@@ -33,3 +33,11 @@ if st.button("Verify"):
 
     else:
         st.error("Wrong OTP")
+        st.image(
+    package_qr_path,
+    width=250
+)cursor.execute("""
+UPDATE packages
+SET status='Collected'
+WHERE tracking_id=?
+""",(tracking_id,))
