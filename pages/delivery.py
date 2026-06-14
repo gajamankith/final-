@@ -24,3 +24,20 @@ if st.button("Register Package"):
     conn.commit()
 
     st.success("Package Registered Successfully")
+    import qrcode
+
+qr = qrcode.make(tracking_id)
+
+qr.save(f"qrcodes/{tracking_id}.png")
+ALTER TABLE packages
+ADD COLUMN qr_path TEXT;
+cursor.execute("""
+INSERT INTO packages
+(student_name,tracking_id,courier_company,status,qr_path)
+VALUES(?,?,?,?,?)
+""",
+(student_name,
+ tracking_id,
+ company,
+ "Received",
+ f"qrcodes/{tracking_id}.png"))
