@@ -20,6 +20,4 @@ if st.button("Search Package"):
         st.dataframe(df)
     else:
         st.warning("No Packages Found")
-       import random
-
-otp = random.randint(1000,9999)
+    
