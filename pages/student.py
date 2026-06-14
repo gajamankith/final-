@@ -20,3 +20,16 @@ if st.button("Search Package"):
         st.dataframe(df)
     else:
         st.warning("No Packages Found")
+        import random
+
+otp = random.randint(100000,999999)
+st.session_state["otp"] = otp
+user_otp = st.text_input("Enter OTP")
+
+if st.button("Verify"):
+
+    if user_otp == str(st.session_state["otp"]):
+        st.success("Verified")
+
+    else:
+        st.error("Wrong OTP")
